@@ -1,4 +1,4 @@
-# frontend_money_projection
+# Money Projection
 Money management web app
 
 Features 
