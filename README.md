@@ -1,5 +1,5 @@
-# Money Projection
-Money management web app
+# Angular JWT
+Implements jwt into Angular
 
 Features 
 
