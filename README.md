@@ -1,4 +1,4 @@
-# Angular JWT
+# Angular 15 JWT
 Implements jwt into Angular
 
 Features 
