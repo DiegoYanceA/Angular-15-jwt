@@ -1,11 +1,19 @@
 @use "assets/styles/colors" as *;
+@use "assets/styles/variables" as *;
 @import "assets/styles/buttons";
+@import "assets/styles/typography";
 @import "~bootstrap/dist/css/bootstrap.css";
 
+html {
+    font-size: 16px;
+}
 
 body {
     &.dark-mode {
         background-color: $bg_dark;
         color: $white;
+        & footer {
+            background-color: $bg_dark;
+        }
     }
 }
