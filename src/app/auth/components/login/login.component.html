@@ -1,1 +1,27 @@
-<p>login works!</p>
+<div class="row">
+    <div class="col-5">
+        <form class="row align-items-center h-100 p-3">
+            <div class="col-12">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">
+                        <fa-icon [icon]="faUser"></fa-icon>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Username" aria-label="Username">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">
+                        <fa-icon [icon]="faLock"></fa-icon>
+                    </span>
+                    <input [type]="showPassword?'text':'password'" class="form-control" placeholder="Password" aria-label="Password">
+                    <button (click)="showPassword = !showPassword" class="btn btn-outline-secondary" type="button" id="button-addon2">
+                        <fa-icon [icon]="showPassword?faEyeSlash:faEye"></fa-icon>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-7">
+        <!-- this image belongs to Diggeo -->
+        <img src="https://cdn.pixabay.com/photo/2014/06/21/14/25/water-373780_960_720.jpg" alt="Image about peaceful">
+    </div>
+</div>

@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './components/login/login.component';
-import { AuthRoutingModule } from './auth-routing.module';
+import { FooterComponent } from './components/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    FooterComponent
   ],
   imports: [
     CommonModule,
-    AuthRoutingModule,
     FontAwesomeModule
+  ],
+  exports: [
+    FooterComponent
   ]
 })
-export class AuthModule { }
+export class SharedModule { }

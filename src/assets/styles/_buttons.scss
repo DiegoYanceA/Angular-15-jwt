@@ -1,0 +1,37 @@
+.btn- {
+    
+    font-weight: 600;
+
+    &whatsapp {
+        background-color: $whatsapp;
+        color: white;
+
+        &:hover {
+            color: $whatsapp;
+            border-color: $whatsapp;
+            border-width: 1px;
+        }
+    }  
+    
+    &call {
+        background-color: $blue;
+        color: white;
+
+        &:hover {
+            color: $blue;
+            border-color: $blue;
+            border-width: 1px;
+        }
+    }  
+
+    &mail {
+        background-color: $red;
+        color: white;
+
+        &:hover {
+            color: $red;
+            border-color: $red;
+            border-width: 1px;
+        }
+    }  
+}
