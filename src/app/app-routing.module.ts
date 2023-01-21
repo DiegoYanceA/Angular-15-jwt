@@ -12,7 +12,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'login',
+    path: 'auth',
     component: LoginComponent,
     children: [
       {

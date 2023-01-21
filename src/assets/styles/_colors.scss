@@ -6,6 +6,13 @@ $white: #eff3f5;
 // Dark modo
 $bg_dark: #1a1a1a;
 
+.color-white {
+    color: $white !important;
+}
+
+.color-red {
+    color: $red !important;
+}
 
 .color-whatsapp {
     color: $whatsapp !important;

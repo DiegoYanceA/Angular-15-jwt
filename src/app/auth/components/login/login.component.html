@@ -1,32 +1,40 @@
 <div class="row wrapper">
     <div class="col-lg-5 col-md-6">
-        <form class="row align-items-center h-100">
+
+        <!-- Login Form  -->
+        <form class="row align-items-center h-100" [formGroup]="formLogin">
             <div class="col-12">
                 <div class="row p-lg-5 p-md-1 p-1">
-                    <div class="col-12 input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">
-                            <fa-icon [icon]="faUser"></fa-icon>
-                        </span>
-                        <input type="text" class="form-control" placeholder="Username" aria-label="Username">
-                    </div>
-                    <div class="col-12 input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">
-                            <fa-icon [icon]="faLock"></fa-icon>
-                        </span>
-                        <input [type]="showPassword?'text':'password'" class="form-control" placeholder="Password" aria-label="Password">
-                        <button (click)="showPassword = !showPassword" class="btn btn-outline-secondary" type="button" id="button-addon2">
-                            <fa-icon [icon]="showPassword?faEyeSlash:faEye"></fa-icon>
-                        </button>
+                    <div class="col-12 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <fa-icon [icon]="faUser"></fa-icon>
+                            </span>
+                            <input [maxlength]="maxLength" formControlName="username" id="username" type="text" class="form-control" placeholder="Username" aria-label="Username">
+                        </div>
+                        <ng-container *ngTemplateOutlet="msgError; context: {error: formLogin.get('username')?.errors, value: formLogin.get('username')?.value}"></ng-container>
                     </div>
                     <div class="col-12 mb-3">
-                        <button class="btn btn-primary w-100">
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <fa-icon [icon]="faLock"></fa-icon>
+                            </span>
+                            <input [maxlength]="maxLength" formControlName="password" id="password" [type]="showPassword?'text':'password'" class="form-control" placeholder="Password" aria-label="Password">
+                            <button (click)="showPassword = !showPassword" class="btn btn-outline-secondary" type="button" id="button-addon2">
+                                <fa-icon [icon]="showPassword?faEyeSlash:faEye"></fa-icon>
+                            </button>
+                        </div>
+                        <ng-container *ngTemplateOutlet="msgError; context: {error: formLogin.get('password')?.errors, value: formLogin.get('password')?.value}"></ng-container>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <button [disabled]="formLogin.invalid" class="btn btn-primary w-100">
                             Join
                         </button>
                     </div>
                     <div class="col-12 text-center">
                         <h6>Forgot my password</h6>
                         <h5>Don't have an account? 
-                            <a href="">Sign up here</a>
+                            <a routerLink="signup">Sign up here</a>
                         </h5>
                     </div>
                 </div>
@@ -39,3 +47,15 @@
         <div class="image-login"></div>
     </div>
 </div>
+
+<ng-template let-error="error" let-value="value" #msgError>
+    <div *ngIf="error?.minlength" class="form-text color-red">
+        {{error.minlength.requiredLength}} or more characters are required, you have written {{error.minlength.actualLength}}
+    </div>
+    <div *ngIf="value != null && 0 < value.length && error?.required" class="form-text color-red">
+        This field is required
+    </div>
+    <div *ngIf="error?.pattern" class="form-text color-red">
+        Special characters are not allowed, except (.) and (_)
+    </div>
+</ng-template>

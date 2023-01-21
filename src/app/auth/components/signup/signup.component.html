@@ -1,0 +1,82 @@
+<div class="row wrapper">
+    <div class="col-12 ">
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-xl-5 col-lg-7 col-md-9">
+
+                <!-- Signup Form  -->
+                <form class="row align-items-center h-100" [formGroup]="formLogin">
+                    <div class="col-12">
+                        <div class="row p-lg-5 p-md-1 p-1">
+                            <div class="col-12 col-md-6 mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <fa-icon [icon]="faPen"></fa-icon>
+                                    </span>
+                                    <input [maxlength]="maxLength" formControlName="name" id="name" type="text" class="form-control" placeholder="Name">
+                                </div>
+                                <ng-container *ngTemplateOutlet="msgError; context: {error: formLogin.get('name')?.errors, value: formLogin.get('name')?.value}"></ng-container>
+                            </div>
+                            <div class="col-12 col-md-6 mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <fa-icon [icon]="faPen"></fa-icon>
+                                    </span>
+                                    <input [maxlength]="maxLength" formControlName="lastname" id="lastname" type="text" class="form-control" placeholder="Last name">
+                                </div>
+                                <ng-container *ngTemplateOutlet="msgError; context: {error: formLogin.get('lastname')?.errors, value: formLogin.get('lastname')?.value}"></ng-container>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <fa-icon [icon]="faAt"></fa-icon>
+                                    </span>
+                                    <input [maxlength]="maxLength" formControlName="email" id="email" type="email" class="form-control" placeholder="Email">
+                                </div>
+                                <ng-container *ngTemplateOutlet="msgError; context: {error: formLogin.get('email')?.errors, value: formLogin.get('email')?.value}"></ng-container>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <fa-icon [icon]="faUser"></fa-icon>
+                                    </span>
+                                    <input [maxlength]="maxLength" formControlName="username" id="username" type="text" class="form-control" placeholder="Username">
+                                </div>
+                                <ng-container *ngTemplateOutlet="msgError; context: {error: formLogin.get('username')?.errors, value: formLogin.get('username')?.value}"></ng-container>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <fa-icon [icon]="faLock"></fa-icon>
+                                    </span>
+                                    <input [maxlength]="maxLength" formControlName="password" id="password" [type]="showPassword?'text':'password'" class="form-control" placeholder="Password" aria-label="Password">
+                                    <button (click)="showPassword = !showPassword" class="btn btn-outline-secondary" type="button" id="button-addon2">
+                                        <fa-icon [icon]="showPassword?faEyeSlash:faEye"></fa-icon>
+                                    </button>
+                                </div>
+                                <ng-container *ngTemplateOutlet="msgError; context: {error: formLogin.get('password')?.errors, value: formLogin.get('password')?.value}"></ng-container>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <button [disabled]="formLogin.invalid" class="btn btn-primary w-100">
+                                    Register
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template let-error="error" let-value="value" #msgError>
+    <div *ngIf="error?.minlength" class="form-text color-red">
+        {{error.minlength.requiredLength}} or more characters are required, you have written {{error.minlength.actualLength}}
+    </div>
+    <div *ngIf="value != null && 0 < value.length && error?.required" class="form-text color-red">
+        This field is required
+    </div>
+    <div *ngIf="error?.pattern" class="form-text color-red">
+        Special characters are not allowed, except (.) and (_)
+    </div>
+</ng-template>
