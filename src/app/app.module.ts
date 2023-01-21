@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './layouts/main/main.component';
-import { LoginComponent } from './layouts/login/login.component';
+import { AuthComponent } from './layouts/auth/auth.component';
 import { SharedModule } from './shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -12,7 +12,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   declarations: [
     AppComponent,
     MainComponent,
-    LoginComponent
+    AuthComponent
   ],
   imports: [
     BrowserModule,

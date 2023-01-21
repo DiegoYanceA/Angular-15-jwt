@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './layouts/login/login.component';
+import { AuthComponent } from './layouts/auth/auth.component';
 import { MainComponent } from './layouts/main/main.component';
 
 const routes: Routes = [
@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    component: LoginComponent,
+    component: AuthComponent,
     children: [
       {
         path:'',

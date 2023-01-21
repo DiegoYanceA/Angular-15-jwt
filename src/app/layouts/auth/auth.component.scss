@@ -1,0 +1,5 @@
+@use "../../../assets/styles/variables" as *;
+
+.wrapper {
+    height: calc($heightVp - $footerHeight);
+}

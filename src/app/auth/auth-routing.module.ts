@@ -13,6 +13,10 @@ const routes: Routes = [
     redirectTo: ''
   },
   {
+    path: 'signup/login',
+    component: LoginComponent
+  },
+  {
     path: 'signup',
     component: SignupComponent 
   }

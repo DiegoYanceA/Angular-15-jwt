@@ -1,16 +1,12 @@
 @use "../../../../assets/styles/variables" as *;
 
-.wrapper {
-    height: calc($heightVp - $footerHeight);
-}
-
 .image-login {
     // This image belongs to Diggeo
     background-image: url('https://cdn.pixabay.com/photo/2014/06/21/14/25/water-373780_960_720.jpg');
     background-repeat: no-repeat;
     // background-attachment: fixed;
     background-size: cover;
-    height: 100vh;
+    height: 100%;
     width: auto;
     filter: brightness(80%)
 }
