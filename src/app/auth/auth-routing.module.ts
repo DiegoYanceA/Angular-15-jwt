@@ -7,14 +7,17 @@ import { SignupComponent } from './components/signup/signup.component';
 const routes: Routes = [
   {
     path: 'login',
+    title: 'Login',
     component: LoginComponent 
   },
   {
     path: 'recover',
+    title: 'Recover',
     component: RecoverComponent
   },
   {
     path: 'signup',
+    title: 'Sign up',
     component: SignupComponent 
   },
   {

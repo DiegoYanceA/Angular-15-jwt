@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faLock, faUser, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-login',
@@ -23,9 +22,7 @@ export class LoginComponent implements OnInit{
   public showPassword:boolean = false;
   public formLogin:FormGroup;
 
-  constructor(private formBuilder:FormBuilder, private titleService:Title){
-    this.titleService.setTitle("Login");
-    
+  constructor(private formBuilder:FormBuilder){
     this.formLogin = this.formBuilder.group({
       username: [null,
         [

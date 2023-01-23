@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
 import { faAt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -17,8 +16,7 @@ export class RecoverComponent {
 
   public formRecover:FormGroup;
 
-  constructor(private formBuilder:FormBuilder, private titleService:Title){
-    this.titleService.setTitle("Sign up");
+  constructor(private formBuilder:FormBuilder){
 
     this.formRecover = this.formBuilder.group({
       email: [null,

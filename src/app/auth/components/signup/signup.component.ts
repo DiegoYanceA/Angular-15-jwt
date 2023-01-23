@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faLock, faUser, faEye, faEyeSlash, faPen, faAt } from '@fortawesome/free-solid-svg-icons';
-import {Title} from "@angular/platform-browser";
-
 class LevelPassword {
   public level: number;
   public name: string;
@@ -51,9 +49,7 @@ export class SignupComponent {
   public currentLevelPassword = 0;
   public formLogin:FormGroup;
 
-  constructor(private formBuilder:FormBuilder, private titleService:Title){
-    this.titleService.setTitle("Sign up");
-
+  constructor(private formBuilder:FormBuilder){
     this.formLogin = this.formBuilder.group({
       name: [null,
         [
