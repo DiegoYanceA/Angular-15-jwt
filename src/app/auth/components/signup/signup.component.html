@@ -10,7 +10,7 @@
                             <span class="input-group-text">
                                 <fa-icon [icon]="faPen"></fa-icon>
                             </span>
-                            <input [maxlength]="maxLength" formControlName="name" id="name" type="text" class="form-control" placeholder="Name">
+                            <input [maxlength]="maxLengthName" formControlName="name" id="name" type="text" class="form-control" placeholder="Name">
                         </div>
                         <ng-container *ngTemplateOutlet="msgError; context: {error: formLogin.get('name')?.errors, value: formLogin.get('name')?.value}"></ng-container>
                     </div>
@@ -19,7 +19,7 @@
                             <span class="input-group-text">
                                 <fa-icon [icon]="faPen"></fa-icon>
                             </span>
-                            <input [maxlength]="maxLength" formControlName="lastname" id="lastname" type="text" class="form-control" placeholder="Last name">
+                            <input [maxlength]="maxLengthName" formControlName="lastname" id="lastname" type="text" class="form-control" placeholder="Last name">
                         </div>
                         <ng-container *ngTemplateOutlet="msgError; context: {error: formLogin.get('lastname')?.errors, value: formLogin.get('lastname')?.value}"></ng-container>
                     </div>
@@ -28,7 +28,7 @@
                             <span class="input-group-text">
                                 <fa-icon [icon]="faAt"></fa-icon>
                             </span>
-                            <input [maxlength]="50" formControlName="email" id="email" type="email" class="form-control" placeholder="Email">
+                            <input [maxlength]="maxLengthEmail" formControlName="email" id="email" type="email" class="form-control" placeholder="Email">
                         </div>
                         <ng-container *ngTemplateOutlet="msgError; context: {error: formLogin.get('email')?.errors, value: formLogin.get('email')?.value}"></ng-container>
                     </div>
@@ -37,7 +37,7 @@
                             <span class="input-group-text">
                                 <fa-icon [icon]="faUser"></fa-icon>
                             </span>
-                            <input autocomplete="username" [maxlength]="maxLength" formControlName="username" id="username" type="text" class="form-control" placeholder="Username">
+                            <input autocomplete="username" [maxlength]="maxLengthAccount" formControlName="username" id="username" type="text" class="form-control" placeholder="Username">
                         </div>
                         <ng-container *ngTemplateOutlet="msgError; context: {error: formLogin.get('username')?.errors, value: formLogin.get('username')?.value}"></ng-container>
                     </div>
@@ -46,7 +46,7 @@
                             <span class="input-group-text">
                                 <fa-icon [icon]="faLock"></fa-icon>
                             </span>
-                            <input [maxlength]="maxLength" formControlName="password" id="current-password" [type]="showPassword?'text':'password'" class="form-control" placeholder="Password" autocomplete="current-password">
+                            <input [maxlength]="maxLengthAccount" formControlName="password" id="current-password" [type]="showPassword?'text':'password'" class="form-control" placeholder="Password" autocomplete="current-password">
                             <button (click)="showPassword = !showPassword" class="btn btn-outline-secondary" type="button" id="button-addon2">
                                 <fa-icon [icon]="showPassword?faEyeSlash:faEye"></fa-icon>
                             </button>
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <div class="col-12 mb-3">
-                        <button [disabled]="formLogin.invalid" class="btn btn-primary w-100">
+                        <button [disabled]="formLogin.invalid || currentLevelPassword < 2" class="btn btn-primary w-100">
                             Register
                         </button>
                     </div>

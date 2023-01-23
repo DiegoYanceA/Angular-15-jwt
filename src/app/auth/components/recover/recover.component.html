@@ -1,0 +1,48 @@
+<div class="row h-100 justify-content-center align-items-center overflow-auto">
+    <div class="col-xl-5 col-lg-7 col-md-9">
+
+        <!-- Signup Form  -->
+        <form class="row" [formGroup]="formRecover">
+            <div class="col-12">
+                <div class="row p-lg-5 p-md-1 p-1">
+                    <div class="col-12 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <fa-icon [icon]="faAt"></fa-icon>
+                            </span>
+                            <input [maxlength]="maxLengthEmail" formControlName="email" id="email" type="email" class="form-control" placeholder="Email">
+                        </div>
+                        <ng-container *ngTemplateOutlet="msgError; context: {error: formRecover.get('email')?.errors, value: formRecover.get('email')?.value}"></ng-container>
+                    </div>
+
+                    <div class="col-12 mb-3">
+                        <button [disabled]="formRecover.invalid" class="btn btn-primary w-100">
+                            Send
+                        </button>
+                    </div>
+                    <div class="col-12 text-center">
+                        <h5>I have an account? 
+                            <a routerLink="/auth/login">Login here</a>
+                        </h5>
+                    </div>
+                </div>
+                
+            </div>
+        </form>
+    </div>
+</div>
+
+<ng-template let-error="error" let-value="value" #msgError>
+
+    <div *ngIf="value != null && 0 < value.length && error?.required" class="form-text color-red">
+        This field is required
+    </div>
+
+    <div *ngIf="error?.pattern && error?.pattern.requiredPattern.localeCompare('/^[^\\s]*$/') == 0" class="form-text color-red">
+        Spaces are not allowed
+    </div>
+
+    <div *ngIf="error?.email" class="form-text color-red">
+        Email invalid
+    </div>
+</ng-template>

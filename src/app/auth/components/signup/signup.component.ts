@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faLock, faUser, faEye, faEyeSlash, faPen, faAt } from '@fortawesome/free-solid-svg-icons';
+import {Title} from "@angular/platform-browser";
+
 class LevelPassword {
   public level: number;
   public name: string;
@@ -31,8 +33,11 @@ export class SignupComponent {
   faAt = faAt;
   //#endregion Icons
 
-  public readonly minLength:number = 8;
-  public readonly maxLength:number = 16;
+  public readonly minLengthAccount:number = 8;
+  public readonly maxLengthAccount:number = 16;
+
+  public readonly maxLengthName:number = 50;
+  public readonly maxLengthEmail:number = 50;
 
   /* Level password
     1: Only letters or Only letters or uppercase letters
@@ -46,13 +51,15 @@ export class SignupComponent {
   public currentLevelPassword = 0;
   public formLogin:FormGroup;
 
-  constructor(private formBuilder:FormBuilder){
+  constructor(private formBuilder:FormBuilder, private titleService:Title){
+    this.titleService.setTitle("Sign up");
+
     this.formLogin = this.formBuilder.group({
       name: [null,
         [
           Validators.required,
           Validators.minLength(1),
-          Validators.maxLength(this.maxLength),
+          Validators.maxLength(this.maxLengthName),
           Validators.pattern(/^[a-zA-Z\s]*$/)
         ]
       ],
@@ -60,7 +67,7 @@ export class SignupComponent {
         [
           Validators.required,
           Validators.minLength(1),
-          Validators.maxLength(this.maxLength),
+          Validators.maxLength(this.maxLengthName),
           Validators.pattern(/^[a-zA-Z\s]*$/)
         ]
       ],
@@ -68,14 +75,15 @@ export class SignupComponent {
         [
           Validators.required,
           Validators.email,
-          Validators.maxLength(50),
+          Validators.maxLength(this.maxLengthEmail),
+          Validators.pattern(/^[^\s]*$/)
         ]
       ],
       username: [null,
         [
           Validators.required,
-          Validators.minLength(this.minLength),
-          Validators.maxLength(this.maxLength),
+          Validators.minLength(this.minLengthAccount),
+          Validators.maxLength(this.maxLengthAccount),
           Validators.pattern(/^[a-z]+[a-z0-9_.]*$/),
           Validators.pattern(/^[^\s]*$/)
         ]
@@ -83,8 +91,8 @@ export class SignupComponent {
       password: [null,
         [
           Validators.required,
-          Validators.minLength(this.minLength),
-          Validators.maxLength(this.maxLength),
+          Validators.minLength(this.minLengthAccount),
+          Validators.maxLength(this.maxLengthAccount),
           Validators.pattern(/^[^\s]*$/)
         ]
       ]
@@ -99,7 +107,7 @@ export class SignupComponent {
   }
 
   public changeLevelPassword(): Boolean {
-    if(this.formLogin.get('password')?.value != null && this.minLength <= this.formLogin.get('password')?.value.length){
+    if(this.formLogin.get('password')?.value != null && this.minLengthAccount <= this.formLogin.get('password')?.value.length){
       
       var password = this.formLogin.get('password')?.value;
 
@@ -134,10 +142,6 @@ export class SignupComponent {
     return false;
   }
 
-  test(a:any){
-    console.log(a)
-  }
-
   public showRulesToPassword():string[] {
     var rules:string[] = [
       "At least one lowercase letter",
@@ -148,7 +152,7 @@ export class SignupComponent {
 
     var result:string[] = [];
 
-    if(this.formLogin.get('password')?.value != null && this.minLength <= this.formLogin.get('password')?.value.length){
+    if(this.formLogin.get('password')?.value != null && this.minLengthAccount <= this.formLogin.get('password')?.value.length){
       var password = this.formLogin.get('password')?.value;
 
       if (!/[a-z]/.test(password)) {

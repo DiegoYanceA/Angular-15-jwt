@@ -21,3 +21,7 @@ body {
 .ng-dirty:not(.ng-valid) {
     border-color: $red;
 }
+
+a {
+    text-decoration: none !important;
+}

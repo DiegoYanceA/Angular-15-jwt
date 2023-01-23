@@ -5,11 +5,13 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './components/signup/signup.component';
+import { RecoverComponent } from './components/recover/recover.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    RecoverComponent
   ],
   imports: [
     CommonModule,

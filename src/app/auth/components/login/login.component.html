@@ -10,7 +10,7 @@
                             <span class="input-group-text">
                                 <fa-icon [icon]="faUser"></fa-icon>
                             </span>
-                            <input [maxlength]="maxLength" formControlName="username" id="username" type="text" class="form-control" placeholder="Username" aria-label="Username">
+                            <input [maxlength]="maxLengthAccount" formControlName="username" id="username" type="text" autocomplete="Username" class="form-control" placeholder="Username">
                         </div>
                         <ng-container *ngTemplateOutlet="msgError; context: {error: formLogin.get('username')?.errors, value: formLogin.get('username')?.value}"></ng-container>
                     </div>
@@ -19,8 +19,8 @@
                             <span class="input-group-text">
                                 <fa-icon [icon]="faLock"></fa-icon>
                             </span>
-                            <input [maxlength]="maxLength" formControlName="password" id="password" [type]="showPassword?'text':'password'" class="form-control" placeholder="Password" aria-label="Password">
-                            <button (click)="showPassword = !showPassword" class="btn btn-outline-secondary" type="button" id="button-addon2">
+                            <input [maxlength]="maxLengthAccount" formControlName="password" id="current-password" autocomplete="current-password" [type]="showPassword?'text':'password'" class="form-control" placeholder="Password" aria-label="Password">
+                            <button (click)="showPassword = !showPassword" class="btn btn-outline-secondary" type="button">
                                 <fa-icon [icon]="showPassword?faEyeSlash:faEye"></fa-icon>
                             </button>
                         </div>
@@ -32,7 +32,9 @@
                         </button>
                     </div>
                     <div class="col-12 text-center">
-                        <h6>Forgot my password</h6>
+                        <h6>
+                            <a routerLink="/auth/recover">Forgot my password</a>
+                        </h6>
                         <h5>Don't have an account? 
                             <a routerLink="/auth/signup">Sign up here</a>
                         </h5>
@@ -52,10 +54,16 @@
     <div *ngIf="error?.minlength" class="form-text color-red">
         {{error.minlength.requiredLength}} or more characters are required, you have written {{error.minlength.actualLength}}
     </div>
+    
     <div *ngIf="value != null && 0 < value.length && error?.required" class="form-text color-red">
         This field is required
     </div>
-    <div *ngIf="error?.pattern" class="form-text color-red">
+
+    <div *ngIf="error?.pattern && error?.pattern.requiredPattern.localeCompare('/^[a-z]+[a-z0-9_.]*$/') == 0" class="form-text color-red">
         Special characters are not allowed, except (.) and (_)
+    </div>
+
+    <div *ngIf="error?.pattern && error?.pattern.requiredPattern.localeCompare('/^[^\\s]*$/') == 0" class="form-text color-red">
+        Spaces are not allowed
     </div>
 </ng-template>

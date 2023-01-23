@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'frontend_money_projection'`, () => {
+  it(`should have as title 'authentication_with_jwt'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('frontend_money_projection');
+    expect(app.title).toEqual('authentication_with_jwt');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('frontend_money_projection app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('authentication_with_jwt app is running!');
   });
 });
