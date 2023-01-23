@@ -1,11 +1,11 @@
-<div class="row h-100 justify-content-center align-items-center">
+<div class="row h-100 justify-content-center align-items-center overflow-auto">
     <div class="col-xl-5 col-lg-7 col-md-9">
 
         <!-- Signup Form  -->
         <form class="row" [formGroup]="formLogin">
             <div class="col-12">
                 <div class="row p-lg-5 p-md-1 p-1">
-                    <div class="col-12 col-md-6 mb-3">
+                    <div class="col-12 mb-3">
                         <div class="input-group">
                             <span class="input-group-text">
                                 <fa-icon [icon]="faPen"></fa-icon>
@@ -14,7 +14,7 @@
                         </div>
                         <ng-container *ngTemplateOutlet="msgError; context: {error: formLogin.get('name')?.errors, value: formLogin.get('name')?.value}"></ng-container>
                     </div>
-                    <div class="col-12 col-md-6 mb-3">
+                    <div class="col-12 mb-3">
                         <div class="input-group">
                             <span class="input-group-text">
                                 <fa-icon [icon]="faPen"></fa-icon>
@@ -28,7 +28,7 @@
                             <span class="input-group-text">
                                 <fa-icon [icon]="faAt"></fa-icon>
                             </span>
-                            <input [maxlength]="maxLength" formControlName="email" id="email" type="email" class="form-control" placeholder="Email">
+                            <input [maxlength]="50" formControlName="email" id="email" type="email" class="form-control" placeholder="Email">
                         </div>
                         <ng-container *ngTemplateOutlet="msgError; context: {error: formLogin.get('email')?.errors, value: formLogin.get('email')?.value}"></ng-container>
                     </div>
@@ -37,7 +37,7 @@
                             <span class="input-group-text">
                                 <fa-icon [icon]="faUser"></fa-icon>
                             </span>
-                            <input [maxlength]="maxLength" formControlName="username" id="username" type="text" class="form-control" placeholder="Username">
+                            <input autocomplete="username" [maxlength]="maxLength" formControlName="username" id="username" type="text" class="form-control" placeholder="Username">
                         </div>
                         <ng-container *ngTemplateOutlet="msgError; context: {error: formLogin.get('username')?.errors, value: formLogin.get('username')?.value}"></ng-container>
                     </div>
@@ -46,12 +46,27 @@
                             <span class="input-group-text">
                                 <fa-icon [icon]="faLock"></fa-icon>
                             </span>
-                            <input [maxlength]="maxLength" formControlName="password" id="password" [type]="showPassword?'text':'password'" class="form-control" placeholder="Password" aria-label="Password">
+                            <input [maxlength]="maxLength" formControlName="password" id="current-password" [type]="showPassword?'text':'password'" class="form-control" placeholder="Password" autocomplete="current-password">
                             <button (click)="showPassword = !showPassword" class="btn btn-outline-secondary" type="button" id="button-addon2">
                                 <fa-icon [icon]="showPassword?faEyeSlash:faEye"></fa-icon>
                             </button>
                         </div>
                         <ng-container *ngTemplateOutlet="msgError; context: {error: formLogin.get('password')?.errors, value: formLogin.get('password')?.value}"></ng-container>
+                    </div>
+                    <div class="col-12 mb-3" *ngIf="changeLevelPassword()">
+                        <div class="progress" role="progressbar">
+                            <div [ngClass]="levelPassword[currentLevelPassword].color + ' ' + levelPassword[currentLevelPassword].progress" class="progress-bar"></div>
+                            
+                        </div>
+                        <div class="color-white">
+                           <small> {{ levelPassword[currentLevelPassword].name }}</small>
+                        </div>
+                        <div class="color-blue mt-1">
+
+                            <ng-container *ngFor="let item of showRulesToPassword()">
+                                <small>{{item}}</small> <br>
+                            </ng-container>
+                        </div>
                     </div>
                     <div class="col-12 mb-3">
                         <button [disabled]="formLogin.invalid" class="btn btn-primary w-100">
@@ -77,7 +92,21 @@
     <div *ngIf="value != null && 0 < value.length && error?.required" class="form-text color-red">
         This field is required
     </div>
-    <div *ngIf="error?.pattern" class="form-text color-red">
+
+    <div *ngIf="error?.pattern && error?.pattern.requiredPattern.localeCompare('/^[a-z]+[a-z0-9_.]*$/') == 0" class="form-text color-red">
         Special characters are not allowed, except (.) and (_)
+    </div>
+
+    <div *ngIf="error?.pattern && error?.pattern.requiredPattern.localeCompare('/^[a-zA-Z\\s]*$/') == 0" class="form-text color-red">
+        Only letters are allowed
+    </div>
+
+    <div *ngIf="error?.pattern && error?.pattern.requiredPattern.localeCompare('/^[^\\s]*$/') == 0" class="form-text color-red">
+        Spaces are not allowed
+    </div>
+    
+
+    <div *ngIf="error?.email" class="form-text color-red">
+        Email invalid
     </div>
 </ng-template>
