@@ -17,7 +17,7 @@ import { RecoverComponent } from './components/recover/recover.component';
     CommonModule,
     AuthRoutingModule,
     FontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class AuthModule { }

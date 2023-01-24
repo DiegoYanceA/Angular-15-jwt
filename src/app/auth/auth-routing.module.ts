@@ -8,17 +8,20 @@ const routes: Routes = [
   {
     path: 'login',
     title: 'Login',
-    component: LoginComponent 
+    component: LoginComponent,
+    data: { animation: 'Login' }
   },
   {
     path: 'recover',
     title: 'Recover',
-    component: RecoverComponent
+    component: RecoverComponent,
+    data: { animation: 'Recover' }
   },
   {
     path: 'signup',
     title: 'Sign up',
-    component: SignupComponent 
+    component: SignupComponent,
+    data: { animation: 'Signup' } 
   },
   {
     path: '**',
